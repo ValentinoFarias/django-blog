@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import os
+import dj_database_url
+if os.path.isfile('env.py'):
+    import env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v#+bx7191*19_fl^=+*o^v)^*%$x95wpjzam0tf@s5p0in%0ju'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -89,6 +94,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default="postgresql://neondb_owner:npg_ro53mHgbtXfi@ep-plain-wildflower-agogn39r.c-2.eu-central-1.aws.neon.tech/mardi_vest_aloha_521023",
+        conn_max_age=600,
+    )
+}
+
 
 
 # Password validation
