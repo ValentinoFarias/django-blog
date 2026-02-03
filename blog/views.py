@@ -12,8 +12,7 @@ from .models import Comment, Post
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
-    # Use the project-level templates/index.html
-    template_name = "index.html"
+    template_name = "blog/index.html"
     paginate_by = 6
 
 
