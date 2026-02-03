@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class About(models.Model):
     title = models.CharField(max_length=200)
@@ -12,11 +10,14 @@ class About(models.Model):
         return self.title
 
 
-class CollaborateRequest(models.Model):
-    name = models.CharField(max_length=200)
+class Collaborate(models.Model):
+    name = models.CharField(max_length=80)
     email = models.EmailField()
     message = models.TextField()
-    read = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_on"]
 
     def __str__(self):
         return f"Collaboration request from {self.name}"
